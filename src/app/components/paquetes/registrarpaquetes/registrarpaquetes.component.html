@@ -1,0 +1,35 @@
+<div class="contenedor">
+  <h2>Registrar Paquete</h2>
+    <!-- ❗ Si NO hay fijas → mensaje -->
+  <div *ngIf="listaFijas.length === 0" class="sin-fijas">
+    <p>Aún no tienes talleres aprobados para ser parte de las fijas.</p>
+  </div>
+  <form *ngIf="listaFijas.length > 0" (ngSubmit)="registrarPaquete()" #formPaquete="ngForm" class="form">
+
+    <!-- Seleccionar Fija -->
+    <label>Selecciona una Fija</label>
+    <select [(ngModel)]="paquete.fijas" name="fija" (change)="cargarFechas()" required>
+      <option *ngFor="let f of listaFijas" [ngValue]="f">
+        {{ f.titulo }}
+      </option>
+    </select>
+
+    <!-- Seleccionar Fecha del Taller -->
+    <label>Selecciona Fecha y Hora</label>
+    <select [(ngModel)]="fechaSeleccionada" name="fecha" required>
+      <option *ngFor="let ft of listaFechas" [ngValue]="ft">
+        {{ ft.dia }} — {{ ft.hora }}
+      </option>
+    </select>
+
+    <!-- Cantidad de personas -->
+    <label>Cantidad de Personas</label>
+    <input type="number" [(ngModel)]="paquete.cantidad_personas" name="cantidad" required>
+
+    <!-- Precio -->
+    <label>Precio</label>
+    <input type="number" [(ngModel)]="paquete.precio" name="precio" required>
+
+    <button type="submit" class="btn-guardar">Registrar Paquete</button>
+  </form>
+</div>

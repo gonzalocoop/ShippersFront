@@ -1,0 +1,45 @@
+<div class="contenedor-principal" *ngIf="listaMisTalleres.length > 0; else sinDatos">
+
+  <h1 class="titulo">Mis Talleres Faltantes</h1>
+
+  <!-- CARD MOSTRADA -->
+  <div class="slider-wrapper">
+
+    <div class="card" [@slideAnimation]="animacionEstado">
+
+      <img 
+        [src]="getImagenUrl(tallerActual.taller.link_imagen)" 
+        alt="Imagen Taller"
+        class="imagen"
+      />
+
+      <h2 class="titulo-taller">{{ tallerActual.taller.titulo }}</h2>
+
+      <div class="datos">
+        <!--  <p><strong>ID:</strong> {{ tallerActual.id_mis_talleres }}</p> -->
+        <p><strong>Fecha:</strong> {{ tallerActual.dia | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Hora:</strong> {{ tallerActual.hora }}</p>
+        <p><strong>Personas:</strong> {{ tallerActual.cantidad_personas }}</p>
+        <p><strong>Precio:</strong> S/ {{ tallerActual.precio }}</p>
+      </div>
+
+      <button class="btn-detalle" (click)="irADetalle(tallerActual.id_mis_talleres)">
+        Ver detalle →
+      </button>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="nav-botones">
+      <button class="nav-btn" (click)="anterior()">⟵ Anterior</button>
+      <button class="nav-btn" (click)="siguiente()">Siguiente ⟶</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NO HAY TALLERES -->
+<ng-template #sinDatos>
+  <p class="mensaje-vacio">No te has registrado a ningun taller.</p>
+</ng-template>

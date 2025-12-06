@@ -1,0 +1,76 @@
+<div class="fijas-container" *ngIf="verificar()">
+
+    <h2 class="titulo-principal">Fijas Disponibles</h2>
+
+    <div class="grid-fijas">
+
+        <div class="card-item" *ngFor="let f of listaFijas">
+
+            <mat-card class="fija-card animate-scale-in">
+
+                <!-- 📸 Imagen -->
+                <div class="img-container">
+                    <img class="card-image" [src]="getImagenUrl(f.taller.link_imagen)" alt="Imagen del taller">
+                    <span class="badge">{{ f.taller.categoria }}</span>
+                </div>
+
+                <mat-card-content>
+
+                    <!-- 🟦 Título de la fija -->
+                    <h2 class="titulo">{{ f.titulo }}</h2>
+
+                    <!-- ⭐ Calificación -->
+                    <p class="rating">
+                        <mat-icon>star</mat-icon>
+                        {{ f.taller.calificacion || 'Sin calificación' }}
+                    </p>
+
+                    <!-- 📍 Dirección -->
+                    <p class="ubicacion">
+                        <mat-icon>location_on</mat-icon>
+                        {{ f.taller.departamento }} · {{ f.taller.direccion }}
+                    </p>
+
+                    <!-- 🟣 Paquetes -->
+                    <h4 class="subtitulo-paquetes">Paquetes disponibles:</h4>
+
+                    <div class="paquetes-carrusel">
+
+                        <!-- Botón izquierda -->
+                        <button class="carrusel-btn left" (click)="scrollPaquetes(f.id_fijas, 'left')">
+                            ‹
+                        </button>
+
+                        <!-- Contenedor deslizable -->
+                        <div class="paquetes-scroll" [attr.data-id]="f.id_fijas">
+
+                            <div *ngFor="let p of paquetesPorFija[f.id_fijas]" class="paquete-burbuja paquete-click"
+                                [routerLink]="['/lasfijas/verpaquete', p.id_paquetes,p.fijas.taller.id_taller]">
+
+                                <span class="cantidad">{{ p.cantidad_personas }} pers.</span>
+                                <span class="precio">S/ {{ p.precio }}</span>
+                                <span class="precio">Día:{{ p.dia }}</span>
+                                <span class="precio">Hora: {{ p.hora }}</span>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- Botón derecha -->
+                        <button class="carrusel-btn right" (click)="scrollPaquetes(f.id_fijas, 'right')">
+                            ›
+                        </button>
+
+                    </div>
+
+
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,218 @@
+<div class="hero">
+  <img [src]="getImagenUrl(taller.link_imagen)" alt="{{ taller.titulo }}">
+  <div class="hero-overlay">
+    <h1>{{ taller.titulo }}</h1>
+    <p class="blanco">{{ taller.departamento }} — {{ taller.direccion }}</p>
+  </div>
+  <button (click)="volver()" class="btn-volver">Volver</button>
+</div>
+
+<!-- Ribbon Informativa -->
+<div class="ribbon">
+  <div class="item">⏱ {{ taller.duracion }} horas</div>
+  <div class="item">💰 S/ {{ taller.precio }}</div>
+  <div class="item">👥 Cupos: {{ taller.cupos_libres }}</div>
+  <div class="item">🧩 Dificultad: {{ taller.dificultad }}</div>
+</div>
+
+<div class="layout">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="left">
+
+    <!-- Sobre esta experiencia -->
+    <section class="section section-experiencia">
+      <h2>Sobre esta experiencia</h2>
+      <p>{{ taller.descripcion }}</p>
+    </section>
+
+    <!-- Incluye / No Incluye -->
+    <section class="section section-incluye">
+      <div>
+        <h3>Incluye</h3>
+        <ul>
+          <li>Materiales del taller</li>
+          <li>Tutoría personalizada</li>
+          <li>Tour por el taller</li>
+          <li>Fotos profesionales</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>No incluye</h3>
+        <ul>
+          <li>Transporte</li>
+          <li>Alimentación adicional</li>
+          <li>Propinas</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Itinerario -->
+    <section class="section section-itinerario">
+      <h3>Itinerario</h3>
+      <details *ngFor="let f of fechas">
+        <summary>Día: {{ f.dia }} Hora: {{ f.hora }} — {{ f.titulo }}</summary>
+        <p  [style.white-space]="'pre-line'">Descripcion: {{ f.descripcion }}</p>
+        <p>Máximas personas del horario: {{ f.maximas_personas }}</p>
+        <p>Cantidad de personas registradas: {{ f.personas_registradas }}</p>
+      </details>
+    </section>
+
+    <!-- Comunidad -->
+    <section class="section section-comunidad">
+      <h3>Creador</h3>
+
+      <div class="comunidad">
+        <img src="assets/images/avatar.png" alt="Artesana">
+        <div>
+          <h4>{{ perfilPublico?.nombre }}</h4>
+          <p>Conoce a la comunidad!!</p>
+        </div>
+      </div>
+
+      <button class="btn-secundario" [routerLink]="['/perfilpublico/',taller.usua.id_usuario]">
+        Ver perfil
+      </button>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="section section-ubicacion">
+      <h3>Ubicación</h3>
+
+      <iframe width="100%" height="280" loading="lazy" style="border-radius: 12px;" [src]="mapaUrl">
+      </iframe>
+    </section>
+    <!-- COMENTARIOS (NUEVA SECCIÓN) -->
+    <section class="section section-comentarios">
+      <h2>Dejar un comentario</h2>
+
+      <form [formGroup]="form" (ngSubmit)="registrar()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Comentario</mat-label>
+          <textarea matInput formControlName="hcomentario"></textarea>
+          <mat-error *ngIf="form.controls['hcomentario'].invalid && form.controls['hcomentario'].touched">
+            El comentario es obligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Calificación (1 a 5)</mat-label>
+          <input type="number" matInput formControlName="hcalificacion">
+          <mat-error
+            *ngIf="form.controls['hcalificacion'].hasError('required') && form.controls['hcalificacion'].touched">
+            La calificación es obligatoria
+          </mat-error>
+          <mat-error
+            *ngIf="form.controls['hcalificacion'].hasError('min') || form.controls['hcalificacion'].hasError('max')">
+            La calificación debe estar entre 1 y 5
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="btn-registrar">Registrar</button>
+
+      </form>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" *ngIf="comentarioRegistrado">
+      <div class="modal-box">
+        <h2>¡Comentario registrado! 🎉</h2>
+        <p>Gracias por compartir tu experiencia.</p>
+        <button class="btn-modal" (click)="cerrarModal()">Aceptar</button>
+      </div>
+    </div>
+    <h2 class="titulo-comentarios">Comentarios</h2>
+
+    <div *ngIf="comentariosPaginados.length === 0" class="sin-comentarios">
+      No hay comentarios todavía.
+    </div>
+
+    <div *ngFor="let c of comentariosPaginados" class="comentario-card">
+
+      <!-- Primera línea: Rol (si aplica) + @username -->
+      <div class="comentario-header">
+        <span class="rol" *ngIf="c.autoridad === 1">Admin</span>
+        <span class="rol creador" *ngIf="c.autoridad === 3">Creador: {{ c.nombre_comunidad }}</span>
+        <span class="username">&#64;{{ c.username }}</span>
+      </div>
+
+      <!-- Segunda línea: Calificación -->
+      <div class="comentario-rating">
+        ⭐ {{ c.calificacion }}
+      </div>
+
+      <!-- Tercera línea: Comentario -->
+      <div class="comentario-texto">
+        {{ c.comentario }}
+      </div>
+
+    </div>
+
+    <!-- Botones de Paginación -->
+    <div class="paginacion">
+      <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">
+        ⬅ Anterior
+      </button>
+
+      <span>Página {{ paginaActual }}</span>
+
+      <button (click)="paginaSiguiente()" [disabled]="(paginaActual * itemsPorPagina) >= comentarios.length">
+        Siguiente ➡
+      </button>
+    </div>
+
+
+  </div>
+
+  <!-- COLUMNA DERECHA -->
+  <div class="right">
+    <div class="card-reserva">
+
+      <div class="precio-box">
+        <h2>S/ {{ taller.precio }}</h2>
+        <span>por persona</span>
+      </div>
+
+      <p class="subtext">Incluye materiales y guía personalizada</p>
+
+      <hr>
+
+      <div class="campo">
+        <label>Horario</label>
+        <select [(ngModel)]="horarioSeleccionado">
+          <option *ngFor="let h of horarios" [value]="h">{{ h }}</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Participantes</label>
+        <div class="participantes">
+          <button class="btn-round" (click)="cambiarParticipantes(-1)">−</button>
+          <span class="count">{{ participantes }}</span>
+          <button class="btn-round" (click)="cambiarParticipantes(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total">
+        <span>Total:</span>
+        <strong>S/ {{ total | number:'1.2-2' }}</strong>
+      </div>
+
+      <button class="btn-reservar" (click)="reservar()">
+        Reservar experiencia 🚀
+      </button>
+
+      <div class="confianza">
+        <p>🔒 Pago seguro</p>
+        <p>💬 Cancelación flexible</p>
+        <p>🤝 Apoyas directamente a artesanos locales</p>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>

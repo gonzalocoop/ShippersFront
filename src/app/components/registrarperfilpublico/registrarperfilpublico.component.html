@@ -1,0 +1,24 @@
+<div class="perfil-container" *ngIf="verificar()">
+
+  <h2>{{ tienePerfil ? 'Editar Perfil Público' : 'Crear Perfil Público' }}</h2>
+
+  <form (ngSubmit)="guardarPerfil()" *ngIf="isAdmin() ||  isEmprender()">
+
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="perfil.nombre" name="nombre" required>
+
+    <label>Descripción:</label>
+    <textarea [(ngModel)]="perfil.descripcion" name="descripcion" rows="6"></textarea>
+
+    <label>Edad:</label>
+    <input type="number" [(ngModel)]="perfil.edad" name="edad" min="0">
+
+    <label>Cantidad de talleres:</label>
+    <input type="number" [(ngModel)]="perfil.cantidad_talleres" name="cantidad_talleres" min="0">
+
+    <button type="submit" class="btn-guardar">
+      {{ tienePerfil ? 'Actualizar Perfil' : 'Crear Perfil' }}
+    </button>
+
+  </form>
+</div>

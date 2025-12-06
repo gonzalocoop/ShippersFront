@@ -1,0 +1,235 @@
+/* NAVBAR */
+.navbar {
+  height: 76px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.04);
+  display: flex;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+/* Layout interno tipo grid */
+.navbar-inner {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 56px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
+/* IZQUIERDA */
+.logo {
+  height: 32px;
+  cursor: pointer;
+}
+
+/* CENTRO */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.menu-btn {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333 !important;
+  border-bottom: 3px solid transparent;
+  transition: 0.25s ease;
+}
+
+/* Subrayados de colores */
+.blue-hover:hover {
+  border-bottom: 3px solid #1A73E8 !important;
+}
+
+.coral-hover:hover {
+  border-bottom: 3px solid #FF6F61 !important;
+}
+
+.green-hover:hover {
+  border-bottom: 3px solid #3CB371 !important;
+}
+
+/* DERECHA */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Ícono de Maki */
+.maki {
+  font-size: 20px;
+}
+
+/* Estilo general del botón con imagen */
+.img-button {
+  width: 40px;
+  height: 40px;
+  padding: 0 !important;
+  border-radius: 50%;
+  overflow: hidden; /* recorta la imagen dentro del botón */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Imagen estilo icono */
+.img-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+ 
+}
+
+/* Imagen estilo avatar circular */
+.img-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* FOOTER */
+.footer {
+  background: #003b73;        /* azul oscuro */
+  color: white;
+  padding: 40px 20px 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-block {
+  width: 260px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  height: 40px;
+}
+
+.footer-desc {
+  margin-top: 10px;
+  color: #d6eaff;           /* celeste suave */
+  font-size: 14px;
+}
+
+.footer-social a {
+  display: inline-block;
+  margin-right: 12px;
+  margin-top: 10px;
+  color: #a8d6ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-social a:hover {
+  color: white;
+}
+
+.footer-block h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #6ba6d9;
+  padding-bottom: 4px;
+}
+
+.footer-block ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-block a {
+  color: #d6eaff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-block a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #2d6fa3;
+  color: #b9d8f5;
+  font-size: 13px;
+}
+
+
+/* Fondo completo */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* puedes usar #f4f8ff */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Contenido interno */
+.loader-content {
+  text-align: center;
+}
+
+/* Spinner circular */
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 7px solid #dce7ff;
+  border-top-color: #3b82f6; /* azul bonito */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+/* Texto */
+.loader-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #3b82f6;
+  animation: pulse 1.5s infinite;
+}
+
+/* Animaciones */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

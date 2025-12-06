@@ -1,0 +1,116 @@
+<div class="container" *ngIf="verificar()">
+
+    <!-- MINI MENÚ -->
+    <div class="menu">
+        <button (click)="cargarAdmins()" [class.active]="opcionSeleccionada === 'admins'">Parches de
+            Actualización</button>
+        <button (click)="cargarCreadores()" [class.active]="opcionSeleccionada === 'creadores'">Historias de
+            Creadores</button>
+        <button (click)="cargarUsuarios()" [class.active]="opcionSeleccionada === 'usuarios'">Historias de
+            Usuarios</button>
+    </div>
+
+    <!-- FORMULARIO REGISTRAR HISTORIA -->
+    <div class="card form-card" *ngIf="(opcionSeleccionada === 'admins' && isAdmin()) ||
+            (opcionSeleccionada === 'creadores' && isEmprender()) ||
+            (opcionSeleccionada === 'usuarios' && isUser())">>
+        <h3>
+            {{ opcionSeleccionada === 'admins'
+            ? 'Registrar parche de actualización'
+            : opcionSeleccionada === 'creadores'
+            ? 'Registrar historia'
+            : 'Registrar historia' }}
+        </h3>
+
+        <form [formGroup]="formHistoria" (ngSubmit)="registrarHistoria()">
+
+            <!-- TÍTULO -->
+            <mat-form-field appearance="outline">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="titulo" required>
+            </mat-form-field>
+
+            <!-- TEXTO -->
+            <mat-form-field appearance="outline">
+                <mat-label>Texto</mat-label>
+                <textarea matInput rows="3" formControlName="texto" required></textarea>
+            </mat-form-field>
+
+            <!-- DIRECCIÓN -->
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre del taller:</mat-label>
+                <input matInput formControlName="direccion" required>
+            </mat-form-field>
+
+            <!-- IMAGEN (archivo) -->
+            <label>Imagen</label>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" required>
+
+            <button mat-raised-button color="primary" type="submit">
+                Guardar Historia
+            </button>
+
+        </form>
+    </div>
+
+    <!-- MENSAJE SI NO HAY HISTORIAS -->
+    <div *ngIf="historias.length === 0" class="no-data">
+        No hay {{ opcionSeleccionada === 'admins'
+        ? 'parches de actualización'
+        : opcionSeleccionada === 'creadores'
+        ? 'historias de creadores'
+        : 'historias de usuarios' }} registradas.
+    </div>
+
+    <!-- LISTADO DE HISTORIAS -->
+    <div class="historias">
+
+        <div *ngFor="let h of historias" class="card historia-card">
+
+            <h3>{{ h.titulo }}</h3>
+            <img *ngIf="h.link_imagen" [src]="getImagenUrl(h.link_imagen)" class="imagen" />
+            <p class="texto">{{ h.texto }}</p>
+            <div class="info">
+                <p><b>Autor:</b> {{ h.usua.username }}</p>
+                <p>
+                    <b>
+                        {{
+                        opcionSeleccionada === 'admins'
+                        ? 'Parche:'
+                        : 'Taller al que hace referencia:'
+                        }}
+                    </b>
+                    {{ h.direccion }}
+                </p>
+            </div>
+
+            <!-- BOTÓN PARA MOSTRAR COMENTARIOS -->
+            <button class="btn-comentarios" (click)="toggleRespuestas(h.id_historia)">
+                {{ historiaSeleccionada === h.id_historia ? "Ocultar comentarios" : "Ver comentarios" }}
+            </button>
+
+            <!-- SECCIÓN DE RESPUESTAS -->
+            <div *ngIf="historiaSeleccionada === h.id_historia" class="respuestas-section">
+
+                <h4>Comentarios:</h4>
+
+                <div *ngFor="let r of respuestas" class="respuesta">
+                    <p class="autor">&#64;{{ r.usua.username }}:</p>
+                    <p>{{ r.texto }}</p>
+                </div>
+
+                <!-- FORMULARIO PARA NUEVA RESPUESTA -->
+                <form class="form-respuesta" (ngSubmit)="registrarRespuesta(h.id_historia)">
+                    <textarea [(ngModel)]="nuevaRespuesta" name="nuevaRespuesta" placeholder="Escribe un comentario..."
+                        rows="3" required></textarea>
+
+                    <button type="submit" class="btn-enviar">Enviar</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

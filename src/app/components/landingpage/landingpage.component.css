@@ -1,0 +1,729 @@
+/* ============================================
+    🎨 VARIABLES DE COLOR
+============================================ */
+:root {
+  --azul-andino: #0F2C44;
+  --verde-quechua: #3D7F5B;
+  --mostaza-inti: #E1B449;
+  --coral-pachamama: #EE5A5A;
+  --azul-electrico: #4A90E2;
+  --gris-sillar: #F3F3F3;
+  --gris-inkawasi: #333333;
+  --gris-cuzco: #666666;
+  /* Nuevo color de fondo para la tarjeta si no hay imagen */
+  --fondo-tarjeta-default: #d1e5ed;
+}
+
+/* ============================================
+    🔧 RESETEO Y BASE
+============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:host {
+  display: block;
+}
+
+.page-content {
+  background: white;
+  color: var(--gris-inkawasi);
+}
+
+
+/* ============================================
+    LOGOTIPO (sin cambios)
+============================================ */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 40px; 
+  height: auto;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--azul-andino);
+}
+
+
+/* ============================
+    FOOTER ESTILO SHIPPERS (sin cambios)
+============================ */
+.footer {
+  background: var(--azul-andino);
+  color: white;
+  padding: 60px 40px 25px 40px;
+  margin-top: 60px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.footer-block {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo img {
+  width: 50px;
+  height: auto;
+}
+
+.footer-desc {
+  margin-top: 12px;
+  color: #e1e1e1;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.footer-social {
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social a {
+  color: #ffffff;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.footer-social a:hover {
+  opacity: 1;
+}
+
+.footer-block h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.footer-block ul {
+  list-style: none;
+}
+
+.footer-block ul li {
+  margin-bottom: 8px;
+}
+
+.footer-block ul li a {
+  color: #dddddd;
+  font-size: 15px;
+}
+
+.footer-block ul li a:hover {
+  color: var(--mostaza-inti);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 35px;
+  }
+}
+
+/* ============================================
+    📦 SECCIÓN FIJAS (TARJETAS) - Ajustes Menores
+============================================ */
+.fijas {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.fijas h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: var(--azul-andino);
+}
+
+/* CRÍTICO: Asegura que el contenedor de carrusel esté centrado */
+.fijas-container {
+  display: flex;
+  justify-content: center;
+  /* Eliminamos gap/flex-wrap aquí, ya que el .carousel-wrapper es el que maneja el contenido */
+}
+
+/* Antiguos estilos de Mat-Card eliminados/sobrescritos */
+.fija-card {
+  width: 260px; 
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+    🧭 NAVBAR SIMPLE (sin cambios)
+============================================ */
+nav {
+  height: 76px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 56px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+nav .logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--azul-andino);
+}
+
+nav .nav-actions button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-login {
+  background: white;
+  border: 2px solid var(--azul-electrico);
+  color: var(--azul-electrico);
+}
+
+.btn-login:hover {
+  background: var(--azul-electrico);
+  color: white;
+}
+
+.btn-register {
+  background: var(--azul-electrico);
+  color: white;
+  margin-left: 12px;
+}
+
+.btn-register:hover {
+  background: #3A78C0;
+}
+
+/* ============================================
+    🖼️ HERO (sin cambios)
+============================================ */
+.hero-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 56px;
+  gap: 40px;
+  position: relative; 
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 46px;
+  font-weight: 600;
+  color: var(--azul-andino);
+  line-height: 1.2;
+}
+
+.hero-text p {
+  margin-top: 12px;
+  font-size: 20px;
+  color: var(--gris-cuzco);
+}
+
+.btn-cta {
+  margin-top: 28px;
+  background: var(--azul-electrico);
+  color: white;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  background: #3A78C0;
+}
+
+/* ============================================
+    🗺️ MAPA (sin cambios)
+============================================ */
+.hero-mapa {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.mapa-peru {
+  width: 360px;
+  max-width: 100%;
+}
+
+/* ============================================
+    🐻 MAKI FLOTANTE AL LADO DEL MAPA (sin cambios)
+============================================ */
+.maki-bubble {
+  position: absolute;
+  right: 50px; 
+  top: 70px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.maki-img {
+  width: 70px;
+}
+
+.bubble {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  font-size: 14px;
+}
+
+/* ============================================
+    ✨ MAKI FIJO INFERIOR (ANIMADO) (sin cambios)
+============================================ */
+.maki {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 90px;
+  animation: movimiento 4s infinite ease-in-out;
+}
+
+@keyframes movimiento {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* ============================================
+    ✨ ESTILO DE TARJETA FINAL (Ajustado para tu nuevo diseño)
+============================================ */
+
+/* Contenedor principal de la tarjeta */
+.fija-card {
+  width: 260px; 
+  flex-shrink: 0; 
+}
+
+.card-content-wrapper {
+  position: relative; 
+  overflow: hidden;
+  border-radius: 12px; 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); 
+  height: 380px; 
+  cursor: pointer;
+  background: var(--fondo-tarjeta-default); 
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-content-wrapper:hover .card-image {
+  transform: scale(1.05); 
+}
+
+/* 🌟 Capa de Información Superpuesta (Overlay) */
+.card-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0) 100%);
+  z-index: 3;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px; 
+  color: white; 
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7); 
+}
+
+.card-location, .card-price { 
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ============================================
+    ➡️ ESTRUCTURA DE CARRUSEL (Ajustes clave aquí)
+============================================ */
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1400px; 
+  margin: 0 auto;
+}
+
+.cards-track {
+  display: flex;
+  /* CRÍTICO: El contenido que sale debe ocultarse */
+  overflow-x: hidden; 
+  /* CRÍTICO: Asegura que todas las tarjetas permanezcan en una sola línea */
+  flex-wrap: nowrap;
+  scroll-behavior: smooth; 
+  gap: 20px;
+  padding: 10px 0; 
+  width: 100%;
+}
+
+/* ⬅️ Botones de Flecha ➡️ */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: var(--azul-andino);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.arrow:hover {
+  background: var(--gris-sillar);
+}
+
+.prev-arrow {
+  left: -20px;
+}
+
+.next-arrow {
+  right: -20px;
+}
+
+/* ============================================
+    📱 RESPONSIVE (Ajustes para carrusel en móvil)
+============================================ */
+@media (max-width: 900px) {
+
+  .hero-wrapper {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .hero-mapa {
+    justify-content: center;
+  }
+
+  .mapa-peru {
+    width: 280px;
+  }
+
+  .maki-bubble {
+    position: static;
+    margin-top: 20px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .arrow {
+    display: none;
+  }
+  
+  /* En móvil, el scroll táctil es preferible, permitimos overflow */
+  .cards-track {
+    overflow-x: auto; 
+    justify-content: flex-start;
+    padding: 10px;
+  }
+
+  .fijas-container {
+    flex-wrap: nowrap; 
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+}
+
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  padding: 12px 30px;
+  background: #e2f2ff;     /* celeste suave */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #003b73;           /* azul oscuro */
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-login,
+.btn-register {
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid #b5d8ff;
+  color: #003b73;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.btn-register {
+  background: #0077ff;
+  color: white;
+  border: none;
+}
+
+.btn-login:hover {
+  background: #f0f7ff;
+}
+
+.btn-register:hover {
+  background: #005fcc;
+}
+
+/* FOOTER */
+.footer {
+  background: #003b73;        /* azul oscuro */
+  color: white;
+  padding: 40px 20px 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-block {
+  width: 260px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  height: 40px;
+}
+
+.footer-desc {
+  margin-top: 10px;
+  color: #d6eaff;           /* celeste suave */
+  font-size: 14px;
+}
+
+.footer-social a {
+  display: inline-block;
+  margin-right: 12px;
+  margin-top: 10px;
+  color: #a8d6ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-social a:hover {
+  color: white;
+}
+
+.footer-block h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #6ba6d9;
+  padding-bottom: 4px;
+}
+
+.footer-block ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-block a {
+  color: #d6eaff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-block a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #2d6fa3;
+  color: #b9d8f5;
+  font-size: 13px;
+}
+
+
+.btn-cta {
+  margin-top: 28px;
+  background: #0077ff;          /* Azul fuerte visible */
+  color: white;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 119, 255, 0.35);
+}
+
+.btn-cta:hover {
+  background: #005fcc;          /* azul más oscuro al hover */
+  box-shadow: 0 6px 16px rgba(0, 119, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+/* NAV con fondo sólido para contraste */
+nav {
+  height: 76px;
+  background: #0F2C44; /* azul oscuro andino */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 56px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Cambia el texto del logo para que se vea */
+.logo-text {
+  color: white !important;
+}
+
+/* Cambia el logo si es oscuro */
+.logo-img {
+  filter: brightness(1.1);
+}
+
+/* CONTENEDOR */
+.nav-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.nav-actions a {
+  text-decoration: none;
+}
+
+/* 💙 Botones visibles */
+.option {
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  border: 2px solid transparent;
+  color: white; /* visible sobre azul */
+}
+
+/* 🟦 Iniciar Sesión */
+.nav-actions a:first-child .option {
+  background: transparent;
+  border-color: #4A90E2;
+  color: #4A90E2;
+}
+
+.nav-actions a:first-child .option:hover {
+  background: #4A90E2;
+  color: white;
+}
+
+/* 🔵 Registrarse */
+.nav-actions a:last-child .option {
+  background: #4A90E2;
+  color: white;
+}
+
+.nav-actions a:last-child .option:hover {
+  background: #3A78C0;
+}

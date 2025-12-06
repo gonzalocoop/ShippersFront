@@ -1,0 +1,76 @@
+<div class="register-wrapper">
+  <!-- Canvas de fondo para partículas -->
+  <canvas id="particles-bg"></canvas>
+
+  <div class="register-card">
+    <h1 class="register-title">¡Bienvenido!</h1>
+    <p class="register-subtitle">Regístrate y comienza tu viaje como estudiante</p>
+
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Nombre de Usuario</mat-label>
+        <input matInput placeholder="Username" formControlName="husername">
+        <mat-error *ngIf="form.controls['husername'].hasError('required') && form.controls['husername'].touched">
+          Llenar campo nombre de usuario
+        </mat-error>
+        <mat-error *ngIf="form.controls['husername'].hasError('maxlength') && form.controls['husername'].touched">
+          Máximo 20 caracteres
+        </mat-error>
+        <mat-error *ngIf="form.controls['husername'].hasError('usernameRepetido') && form.controls['husername'].touched">
+          Nombre de usuario ya existe
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput placeholder="Password" type="password" formControlName="hpassword">
+        <mat-error *ngIf="form.controls['hpassword'].hasError('required') && form.controls['hpassword'].touched">
+          Llenar campo contraseña
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput placeholder="Email" formControlName="hemail">
+        <mat-error *ngIf="form.controls['hemail'].hasError('required') && form.controls['hemail'].touched">
+          Llenar campo email
+        </mat-error>
+        <mat-error *ngIf="form.controls['hemail'].hasError('pattern') && form.controls['hemail'].touched">
+          Formato de email inválido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Nombre del Cliente</mat-label>
+        <input matInput placeholder="Cliente" formControlName="hcliente">
+        <mat-error *ngIf="form.controls['hcliente'].hasError('required') && form.controls['hcliente'].touched">
+          Llenar campo cliente
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Edad</mat-label>
+        <input matInput placeholder="Edad" formControlName="hedad">
+        <mat-error *ngIf="form.controls['hedad'].hasError('required') && form.controls['hedad'].touched">
+          Llenar campo edad
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="dynamic-field" appearance="outline">
+        <mat-label>Tipo de Usuario</mat-label>
+        <mat-select formControlName="hrol">
+          <mat-option *ngFor="let m of listaRoles" [value]="m.id_rol">{{ m.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['hrol'].hasError('required') && form.controls['hrol'].touched">
+          Selecciona que tipo de usuario es
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-flat-button class="btn-primary" type="submit">Registrar</button>
+        <button mat-flat-button class="btn-secondary" routerLink="/landing">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

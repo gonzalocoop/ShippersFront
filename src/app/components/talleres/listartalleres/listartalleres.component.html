@@ -1,0 +1,120 @@
+<div class="talleres-container" *ngIf="verificar()">
+
+  <!-- 🔍 BUSCADOR -->
+  <div class="search-bar animate-fade-in">
+    <mat-icon>search</mat-icon>
+    <input 
+      type="text" 
+      placeholder="Buscar talleres, comunidades o destinos…" 
+      [(ngModel)]="searchText"
+      (input)="aplicarFiltros()"
+    />
+  </div>
+
+  <!-- 🎛 FILTROS -->
+  <div class="filtros-chips animate-fade-in-delay">
+    
+    <div class="select-wrapper glass">
+      <select [(ngModel)]="categoriaFiltro" (change)="aplicarFiltros()">
+        <option value="">Categoría</option>
+        <option value="Gastronomía">Gastronomía</option>
+        <option value="Artesanía">Artesanía</option>
+        <option value="Naturaleza">Naturaleza</option>
+        <option value="Cultura">Cultura</option>
+      </select>
+    </div>
+
+    <div class="select-wrapper glass">
+      <select [(ngModel)]="departamentoFiltro" (change)="aplicarFiltros()">
+        <option value="">Departamento</option>
+
+        <optgroup label="Costa">
+          <option value="Tumbes">Tumbes</option>
+          <option value="Piura">Piura</option>
+          <option value="Lambayeque">Lambayeque</option>
+          <option value="La Libertad">La Libertad</option>
+          <option value="Ancash">Ancash</option>
+          <option value="Lima">Lima</option>
+          <option value="Ica">Ica</option>
+          <option value="Arequipa">Arequipa</option>
+          <option value="Moquegua">Moquegua</option>
+          <option value="Tacna">Tacna</option>
+        </optgroup>
+
+        <optgroup label="Sierra">
+          <option value="Cajamarca">Cajamarca</option>
+          <option value="Huanuco">Huanuco</option>
+          <option value="Pasco">Pasco</option>
+          <option value="Junin">Junin</option>
+          <option value="Huancavelica">Huancavelica</option>
+          <option value="Ayacucho">Ayacucho</option>
+          <option value="Apurimac">Apurimac</option>
+          <option value="Cusco">Cusco</option>
+          <option value="Puno">Puno</option>
+        </optgroup>
+
+        <optgroup label="Selva">
+          <option value="Loreto">Loreto</option>
+          <option value="Amazonas">Amazonas</option>
+          <option value="San Martin">San Martin</option>
+          <option value="Ucayali">Ucayali</option>
+          <option value="Madre de Dios">Madre de Dios</option>
+        </optgroup>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- 🧱 GRID -->
+  <div class="grid-talleres">
+    <div class="card-item" *ngFor="let t of pagedTalleres">
+      
+      <mat-card class="taller-card animate-scale-in">
+        <div class="img-container">
+          <img class="card-image"
+                 [src]="getImagenUrl(t.link_imagen)"
+                 alt="Imagen del taller">
+
+          <span class="badge">{{ t.categoria }}</span>
+        </div>
+
+        <mat-card-content>
+          <h2 class="titulo">{{ t.titulo }}</h2>
+          <p class="comunidad">{{ t.usua.username }}</p>
+          <!-- ⭐ CALIFICACIÓN -->
+          <p class="rating">
+          <mat-icon>star</mat-icon>
+          {{ t.calificacion ? (t.calificacion | number : '1.2-2') : 'Sin calificación' }}
+          
+          </p>
+          <p class="ubicacion">
+            <mat-icon>location_on</mat-icon>
+            {{ t.departamento }} · {{ t.direccion }}
+          </p>
+
+          <p class="precio">
+            S/ {{ t.precio }} <span class="por">por persona</span>
+          </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <a class="btn-detalle gradient-btn" [routerLink]="['/talleres/descripcion/', t.id_taller]">
+            Ver detalle
+          </a>
+        </mat-card-actions>
+
+      </mat-card>
+
+    </div>
+  </div>
+
+  <!-- PAGINADOR -->
+  <mat-paginator
+    [length]="filteredTalleres.length"
+    [pageSize]="8"
+    [pageSizeOptions]="[8, 16, 24]">
+  </mat-paginator>
+
+</div>
+
+

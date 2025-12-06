@@ -1,0 +1,136 @@
+/* ===============================
+   FONDO OSCURO CON ANIMACIÓN DE PARTÍCULAS
+=============================== */
+.login-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0f2c; /* fondo oscuro profundo */
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+#login-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ===============================
+   CONTENEDOR DEL LOGIN
+=============================== */
+.login-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 50px 30px;
+  background: #ffffff; /* fondo blanco para contraste */
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  z-index: 1;
+  text-align: center;
+}
+
+/* ===============================
+   ICONO Y CABECERA
+=============================== */
+.lock-icon img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+.login-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a0f2c;
+}
+
+.login-header p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* ===============================
+   FORMULARIO
+=============================== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #90caf9 !important;
+}
+
+:host ::ng-deep .mat-form-field-label {
+  color: #0a0f2c !important;
+}
+
+:host ::ng-deep .mat-input-element {
+  color: #0a0f2c;
+}
+
+/* ===============================
+   BOTONES
+=============================== */
+.login-button {
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1e88e5, #42a5f5);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(30,136,229,0.4);
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(30,136,229,0.6);
+}
+
+/* ===============================
+   FOOTER
+=============================== */
+.login-footer {
+  margin-top: 25px;
+}
+
+.tertiary-link {
+  color: #1e88e5;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.tertiary-link:hover {
+  color: #1565c0;
+  text-decoration: underline;
+}
+
+.signup-prompt p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-prompt a {
+  color: #1e88e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-prompt a:hover {
+  color: #1565c0;
+  text-decoration: underline;
+}

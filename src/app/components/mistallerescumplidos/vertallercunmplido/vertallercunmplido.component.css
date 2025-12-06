@@ -1,0 +1,169 @@
+.contenedor {
+  padding: 35px;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 1s ease;
+  background: linear-gradient(135deg, #ff9ef7, #8cf2ff);
+  min-height: 100vh;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  width: 90%;
+  max-width: 900px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: zoomIn 0.8s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.card-img img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.titulo {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.categoria {
+  margin-bottom: 15px;
+}
+
+.tag {
+  background: #ff46e1;
+  padding: 6px 15px;
+  color: white;
+  font-weight: bold;
+  border-radius: 18px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.tag2 {
+  background: #6a00ff;
+}
+
+.descripcion {
+  color: #555;
+  margin-bottom: 25px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  background: #f8f8ff;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.info-item label {
+  font-weight: bold;
+  color: #444;
+}
+
+.info-item p {
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.btn-volver {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #6a00ff, #ff0099);
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-volver:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,255,255,0.8);
+}
+
+.cargando {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  padding-top: 80px;
+}
+
+
+/* Tarjeta elegante para el mapa */
+.mapa-card {
+  margin-top: 30px;
+  background: #f8f8ff;
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  animation: fadeInMap 0.8s ease;
+}
+
+@keyframes fadeInMap {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.map-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.map-direccion {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #444;
+}
+
+/* Contenedor para proporciones perfectas */
+.map-container {
+  position: relative;
+  width: 100%;
+  padding-top: 55%; /* controla el alto del mapa */
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}

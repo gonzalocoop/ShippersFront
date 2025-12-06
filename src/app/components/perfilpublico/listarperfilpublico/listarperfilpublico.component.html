@@ -1,0 +1,53 @@
+<div class="perfil-wrapper" @fadeAnimation>
+
+    <div class="perfil-card">
+
+        <!-- Imagen del usuario -->
+        <div class="avatar-container">
+            <img src="assets/images/avatar.png" alt="Perfil" class="avatar" />
+        </div>
+
+        <div class="perfil-header">
+            <h1 class="nombre">
+                <i class="icono bi bi-person-fill"></i>
+                {{ perfil?.nombre }}
+            </h1>
+<!--
+            <div class="info-line comunidad">
+                <i class="bi bi-people-fill"></i>
+                Nombre de comunidad:
+                <span>{{ perfil?.usua?.nombre_cliente }}</span>
+            </div>
+-->
+            <div class="info-line username">
+                <i class="bi bi-at"></i>
+                <span>&#64;{{ perfil?.usua?.username }}</span>
+            </div>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+                <h3>Edad</h3>
+                <p>{{ perfil?.edad }} años</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Cantidad de Talleres</h3>
+                <p>{{ perfil?.cantidad_talleres }}</p>
+            </div>
+
+            <div class="info-item full">
+                <h3 [style.white-space]="'pre-line'">Descripción</h3>
+                <p>{{ perfil?.descripcion }}</p>
+            </div>
+
+        </div>
+
+        <button class="btn-volver" (click)="volver()">
+            ← Volver
+        </button>
+
+    </div>
+
+</div>

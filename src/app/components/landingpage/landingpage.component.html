@@ -1,0 +1,75 @@
+
+<div class="page-content">
+  <!-- NAVBAR SIMPLE -->
+  <nav>
+  <div class="logo-container">
+    <img src="assets/images/logo.png" class="logo-img" alt="Logo Shippers">
+    <span class="logo-text">Shippers</span>
+  </div>
+
+  <div class="nav-actions">
+    <a routerLink="/iniciosesion"><div class="option">Iniciar Sesion</div></a>
+   <a routerLink="/registrarcuenta"><div class="option">Registrarse</div></a>
+  </div>
+</nav>
+
+  <!-- HERO + MAPA JUNTOS -->
+<section class="hero-wrapper">
+
+  <div class="hero-text">
+    <h1>Descubre lo que no te contaron de mí</h1>
+    <p>Experiencias que te esperan</p>
+    <button class="btn-cta" routerLink="/iniciosesion">Explorar talleres 🔥</button>
+  </div>
+
+  <div class="hero-mapa">
+    <img src="assets/images/mapa-peru.png" class="mapa-peru">
+  </div>
+
+  <!-- MAKI flotante bien colocado -->
+  <div class="maki-bubble">
+    <img src="assets/images/maki.png" class="maki-img">
+   <div></div>
+    <div class="bubble">¿Planeamos tu finde?</div>
+  </div>
+
+</section>
+
+  
+  <!-- MAKI FLOTANTE -->
+  <img src="assets/images/maki.png" class="maki" alt="Maki">
+
+  <!-- LAS FIJAS AQUÍ-->
+  <section class="fijas">
+  <h2>Las Fijas 🔥</h2>
+
+  <div class="fijas-container">
+    <div class="carousel-wrapper">
+
+      <button class="arrow prev-arrow" (click)="scrollCarousel('prev')">◀️</button>
+
+      <div class="cards-track" #cardsTrack> 
+          <div *ngFor="let fija of fijas" class="fija-card">
+
+              <div class="card-content-wrapper">
+                  <img class="card-image"
+                       [src]="getImagenUrl(fija.taller.link_imagen)"
+                       alt="Imagen del taller">
+
+                  <div class="card-info-overlay">
+                      <h3 class="card-title">{{ fija.titulo }}</h3>
+                      <p class="card-price" *ngIf="fija.taller.precio">${{ fija.taller.precio }}. {{ fija.taller.departamento }}</p>
+                      <p class="card-location" *ngIf="!fija.taller.precio">{{ fija.taller.departamento }}</p>
+                  </div>
+
+              </div>
+
+          </div>
+      </div>
+
+      <button class="arrow next-arrow" (click)="scrollCarousel('next')">▶️</button>
+
+    </div>
+  </div>
+</section>
+</div>

@@ -1,0 +1,60 @@
+.contenedor {
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+  background: #f5faff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #0a3b8e;
+  margin-bottom: 20px;
+}
+
+.form label {
+  font-weight: bold;
+  color: #0a3b8e;
+  margin-top: 10px;
+  display: block;
+}
+
+.form select,
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #b5d4ff;
+  background: white;
+}
+
+.btn-guardar {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #0a7bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-guardar:hover {
+  background: #005fd4;
+}
+
+
+.sin-fijas {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  background: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-radius: 10px;
+  color: #0d47a1;
+  font-size: 18px;
+  font-weight: 500;
+}

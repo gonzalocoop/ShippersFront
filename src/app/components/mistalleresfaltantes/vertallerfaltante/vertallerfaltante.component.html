@@ -1,0 +1,85 @@
+<div class="contenedor" *ngIf="!cargando; else cargandoTpl">
+
+  <div class="card">
+    <div class="card-img">
+      <img [src]="getImagenUrl(tallerData.taller.link_imagen)" alt="Imagen del Taller">
+    </div>
+
+    <div class="card-body">
+
+      <h1 class="titulo">{{ tallerData.taller.titulo }}</h1>
+
+      <p class="categoria">
+        <span class="tag">{{ tallerData.taller.categoria }}</span>
+        <span class="tag tag2">{{ tallerData.taller.dificultad }}</span>
+      </p>
+
+      <p class="descripcion">
+        {{ tallerData.taller.descripcion }}
+      </p>
+
+      <div class="info-grid">
+
+        <div class="info-item">
+          <label>📅 Fecha</label>
+          <p>{{ tallerData.dia | date:'dd/MM/yyyy' }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>⏰ Hora</label>
+          <p>{{ tallerData.hora }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>👥 Personas</label>
+          <p>{{ tallerData.cantidad_personas }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>💲 Precio</label>
+          <p>S/ {{ tallerData.precio }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>🏙 Departamento</label>
+          <p>{{ tallerData.taller.departamento }}</p>
+        </div>
+
+        <div class="info-item">
+          <label>📏 Duración</label>
+          <p>{{ tallerData.taller.duracion }} horas</p>
+        </div>
+
+        <div class="info-item">
+          <label>⭐ Calificación</label>
+          <p>{{ tallerData.taller.calificacion }}</p>
+        </div>
+
+      </div>
+      <!-- Mapa separado y elegante -->
+      <div class="mapa-card">
+        <h3 class="map-title">📍 Ubicación</h3>
+      <!--  <p class="map-direccion">{{ tallerData.taller.direccion }}</p>-->
+
+        <div class="map-container">
+          <iframe [src]="mapaUrl" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        
+      </div>
+      <button class="btn-completar" (click)="completarTaller()" [disabled]="completando">
+        <span *ngIf="!completando">✔ Marcar como Completado</span>
+        <span *ngIf="completando" class="spinner"></span>
+      </button>
+      
+      <!-- BOTÓN VOLVER -->
+      <button class="btn-volver" (click)="regresar()">← Volver</button>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #cargandoTpl>
+  <div class="cargando">Cargando taller...</div>
+</ng-template>

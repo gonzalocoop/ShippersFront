@@ -1,0 +1,200 @@
+<div class="page-container" *ngIf="(verificar() && isAdmin() )">
+
+  <!-- FORMULARIO DE TALLER -------------------------------------------------->
+  <div *ngIf="!tallerGuardado" class="card" >
+
+    <h1 class="title">Registrar Taller</h1>
+
+    <form [formGroup]="formTaller" (ngSubmit)="registrarTaller()" *ngIf="isAdmin()|| isEmprender()">
+
+      <div class="grid-2">
+
+        <!-- TITULO -->
+        <mat-form-field appearance="outline">
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="titulo" required>
+        </mat-form-field>
+
+        <!-- CATEGORIA - SELECT -->
+        <mat-form-field appearance="outline">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="categoria" required>
+            <mat-option value="">Seleccione</mat-option>
+            <mat-option value="Gastronomía">Gastronomía</mat-option>
+            <mat-option value="Artesanía">Artesanía</mat-option>
+            <mat-option value="Naturaleza">Naturaleza</mat-option>
+            <mat-option value="Cultura">Cultura</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- DESCRIPCIÓN -->
+        <mat-form-field appearance="outline" class="grid-full">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput rows="3" formControlName="descripcion" required></textarea>
+        </mat-form-field>
+
+       
+         <!-- IMAGEN DEL TALLER (FUERA DE MAT-FORM-FIELD) -->
+        <div class="grid-full">
+          <label class="label-file">Imagen del Taller</label>
+          <input 
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            class="input-file"
+            required
+          >
+        </div>
+
+
+        <!-- DEPARTAMENTO - SELECT -->
+        <mat-form-field appearance="outline">
+          <mat-label>Departamento</mat-label>
+          <mat-select formControlName="departamento" required>
+            <mat-option value="">Seleccione</mat-option>
+
+            <mat-option value="Tumbes">Tumbes</mat-option>
+            <mat-option value="Piura">Piura</mat-option>
+            <mat-option value="Lambayeque">Lambayeque</mat-option>
+            <mat-option value="La Libertad">La Libertad</mat-option>
+            <mat-option value="Ancash">Ancash</mat-option>
+            <mat-option value="Lima">Lima</mat-option>
+            <mat-option value="Ica">Ica</mat-option>
+            <mat-option value="Arequipa">Arequipa</mat-option>
+            <mat-option value="Moquegua">Moquegua</mat-option>
+            <mat-option value="Tacna">Tacna</mat-option>
+            <mat-option value="Cajamarca">Cajamarca</mat-option>
+            <mat-option value="Huanuco">Huanuco</mat-option>
+            <mat-option value="Pasco">Pasco</mat-option>
+            <mat-option value="Junin">Junin</mat-option>
+            <mat-option value="Huancavelica">Huancavelica</mat-option>
+            <mat-option value="Ayacucho">Ayacucho</mat-option>
+            <mat-option value="Apurimac">Apurimac</mat-option>
+            <mat-option value="Cusco">Cusco</mat-option>
+            <mat-option value="Puno">Puno</mat-option>
+            <mat-option value="Loreto">Loreto</mat-option>
+            <mat-option value="Amazonas">Amazonas</mat-option>
+            <mat-option value="San Martin">San Martin</mat-option>
+            <mat-option value="Ucayali">Ucayali</mat-option>
+            <mat-option value="Madre de Dios">Madre de Dios</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+        <!-- DIRECCIÓN -->
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input matInput formControlName="direccion" required>
+        </mat-form-field>
+
+        <!-- PRECIO -->
+        <mat-form-field appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" formControlName="precio" required>
+        </mat-form-field>
+
+        <!-- DURACION -->
+        <mat-form-field appearance="outline">
+          <mat-label>Duración (horas)</mat-label>
+          <input matInput type="number" formControlName="duracion" required>
+        </mat-form-field>
+
+        <!-- CUPOS -->
+        <mat-form-field appearance="outline">
+          <mat-label>Cupos libres</mat-label>
+          <input matInput type="number" formControlName="cupos_libres" required>
+        </mat-form-field>
+
+        <!-- DIFICULTAD - SELECT -->
+        <mat-form-field appearance="outline">
+          <mat-label>Dificultad</mat-label>
+          <mat-select formControlName="dificultad" required>
+            <mat-option value="">Seleccione</mat-option>
+            <mat-option value="Alta">Alta</mat-option>
+            <mat-option value="Media">Media</mat-option>
+            <mat-option value="Baja">Baja</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <button mat-raised-button color="primary" class="btn-submit" [disabled]="formTaller.invalid">
+        Guardar Taller
+      </button>
+
+    </form>
+  </div>
+
+  <!-- FORMULARIO DE FECHAS -------------------------------------------------- -->
+  <div *ngIf="tallerGuardado" class="card">
+
+    <!-- <h2 class="title">Fechas del Taller (ID: {{idTallerCreado}})</h2> -->
+
+    <div class="cupos-box">
+      <p>Cupos totales: <strong>{{ cuposTaller }}</strong></p>
+      <p>Asignados: <strong>{{ sumaFechas }}</strong></p>
+      <p>Pendientes: <strong>{{ cuposTaller - sumaFechas }}</strong></p>
+    </div>
+
+    <form [formGroup]="formFechas" (ngSubmit)="guardarFechas()" *ngIf="isAdmin()|| isEmprender()">
+
+      <div formArrayName="fechas">
+
+        <div *ngFor="let fecha of fechas.controls; let i = index" [formGroupName]="i" class="fecha-item">
+
+          <div class="grid-2">
+
+            <!-- DÍA -->
+            <mat-form-field appearance="outline">
+              <mat-label>Día</mat-label>
+              <input matInput type="date" formControlName="dia" required>
+            </mat-form-field>
+
+            <!-- HORA -->
+            <mat-form-field appearance="outline">
+              <mat-label>Hora (HH:MM:SS)</mat-label>
+              <input matInput type="text" formControlName="hora" placeholder="08:30:00" required>
+            </mat-form-field>
+
+            <!-- TITULO -->
+            <mat-form-field appearance="outline" class="grid-full">
+              <mat-label>Título</mat-label>
+              <input matInput formControlName="titulo" required>
+            </mat-form-field>
+
+            <!-- DESCRIPCIÓN -->
+            <mat-form-field appearance="outline" class="grid-full">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput rows="2" formControlName="descripcion"></textarea>
+            </mat-form-field>
+
+            <!-- MÁXIMAS PERSONAS -->
+            <mat-form-field appearance="outline">
+              <mat-label>Máximas personas</mat-label>
+              <input matInput type="number" formControlName="maximas_personas" required>
+            </mat-form-field>
+
+          </div>
+
+          <button mat-stroked-button color="warn" (click)="eliminarFecha(i)" type="button">
+            Eliminar Fecha
+          </button>
+
+        </div>
+
+      </div>
+
+      <button mat-raised-button color="accent" type="button" class="btn-add" (click)="agregarFecha()">
+        + Agregar Fecha
+      </button>
+
+      <button mat-raised-button color="primary" class="btn-submit"
+        [disabled]="formFechas.invalid || sumaFechas != cuposTaller">
+        Guardar Fechas
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

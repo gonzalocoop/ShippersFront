@@ -1,0 +1,80 @@
+.contenedor {
+  padding: 20px;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: #0d47a1;
+}
+
+/* Loader */
+.loader {
+  margin: 40px auto;
+  border: 6px solid #e3f2fd;
+  border-top: 6px solid #42a5f5;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+  100% { transform: rotate(360deg); }
+}
+
+.sin-datos {
+  text-align: center;
+  color: #555;
+  font-size: 18px;
+}
+
+/* Cards grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform .2s, box-shadow .3s;
+  border: 1px solid #e0e0e0;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Header */
+.card-header h2 {
+  margin: 0;
+  color: #1976d2;
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Body */
+.card-body p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Estado */
+.activo {
+  color: #1e88e5;
+  font-weight: bold;
+}
+
+.inactivo {
+  color: #e53935;
+  font-weight: bold;
+}

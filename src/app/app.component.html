@@ -1,0 +1,151 @@
+<!-- LOADER FULLSCREEN -->
+<div class="loader-overlay" *ngIf="!isAuthChecked || isAppLoading">
+  <div class="loader-content">
+    <div class="spinner"></div>
+    <h1 class="loader-text">Cargando...</h1>
+  </div>
+</div>
+
+<!-- TODA LA APP SOLO SE RENDERIZA SI YA SABEMOS SI HAY TOKEN -->
+<div *ngIf="isAuthChecked">
+  <mat-toolbar class="navbar" *ngIf="verificar()">
+    <div class="navbar-inner">
+
+      <!-- LOGO IZQUIERDA -->
+      <div class="nav-left">
+        <img src="assets/images/logo.png" routerLink="/homes" alt="Shippers Logo" class="logo" (click)="goHome()" />
+      </div>
+
+      <!-- MENÚ CENTRAL -->
+      <div class="nav-center">
+
+        <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-button routerLink="/talleres"
+          class="menu-btn blue-hover">
+          Explorar
+        </button>
+        <button *ngIf="isAdmin() || isEmprender()" mat-button routerLink="/registrarperfilpublico"
+          class="menu-btn blue-hover">
+          Mi Perfil Público!!
+        </button>
+
+        <button *ngIf="isAdmin() || isEmprender()" mat-button routerLink="/talleres/registrar"
+          class="menu-btn blue-hover">
+          Registrar talleres
+        </button>
+        <button *ngIf="isAdmin() || isEmprender()" mat-button routerLink="/paquetes/registrar"
+          class="menu-btn blue-hover">
+          Registrar paquetes de fijas 🔥
+        </button>
+
+        <button *ngIf="isAdmin() " mat-button routerLink="/admin"
+          class="menu-btn blue-hover">
+          Administrador
+        </button>
+
+        <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-button routerLink="/lasfijas"
+          class="menu-btn coral-hover">
+          Las Fijas 🔥
+        </button>
+
+
+
+        <!-- MIS TALLERES CON MAT MENU -->
+        <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-button [matMenuTriggerFor]="menuTalleres"
+          class="menu-btn blue-hover">
+          Mis Talleres
+        </button>
+
+        <!-- HISTORIAS -->
+        <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-button routerLink="/historias"
+          class="menu-btn blue-hover">
+          Historias
+        </button>
+        <div></div>
+        <mat-menu #menuTalleres="matMenu">
+          <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-menu-item
+            routerLink="/mistalleresfaltantes">Próximos</button>
+          <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-menu-item
+            routerLink="/mistallerescumplidos">Vividos</button>
+          <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-menu-item routerLink="/comentarios">Mis
+            reseñas</button>
+          <button *ngIf="isAdmin() || isEmprender()" mat-menu-item routerLink="/posiblesfijas">Talleres aprobados para tener fijas!!</button>
+        </mat-menu>
+      </div>
+
+      <!-- DERECHA -->
+      <div class="nav-right">
+
+        <!-- Maki -->
+        <button mat-icon-button class="img-button" (click)="abrirMaki()">
+          <img src="assets/images/maki.png" class="img-icon" />
+        </button>
+
+        <button mat-icon-button class="img-button" [matMenuTriggerFor]="userMenu">
+          <img src="assets/images/avatar.png" class="img-avatar" />
+        </button>
+
+        <!-- MENU DEL USUARIO -->
+        <mat-menu #userMenu="matMenu">
+        <!--  <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-menu-item routerLink="/micuenta">Mi cuenta</button> -->
+          <button *ngIf="isAdmin() || isUser()|| isEmprender()" mat-menu-item (click)="logout()">Cerrar sesión</button>
+        </mat-menu>
+
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <!-- CONTENIDO GENERAL -->
+  <div class="page-container">
+    <router-outlet></router-outlet>
+  </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- 1. BLOQUE INFORMACIÓN -->
+      <div class="footer-block">
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="Shippers Logo">
+          <h3>Shippers</h3>
+        </div>
+
+        <p class="footer-desc">
+          Descubre experiencias únicas y vive aventuras que nunca te contaron.
+          Encuentra talleres, historias y más.
+        </p>
+
+        <div class="footer-social">
+          <a target="_blank">Instagram</a>
+          <a target="_blank">TikTok</a>
+          <a target="_blank">YouTube</a>
+        </div>
+      </div>
+
+      <!-- 2. BLOQUE NAVEGACIÓN 
+    <div class="footer-block">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#">Explorar</a></li>
+        <li><a href="#">Las Fijas</a></li>
+        <li><a href="#">Historias</a></li>
+        <li><a href="#">Mis Talleres</a></li>
+      </ul>
+    </div>
+-->
+      <!-- 3. BLOQUE LEGAL -->
+      <div class="footer-block">
+        <h4>Legal</h4>
+        <ul>
+          <li><a>Términos</a></li>
+          <li><a>Privacidad</a></li>
+          <li><a>Contacto</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Shippers — Todos los derechos reservados
+    </div>
+  </footer>
+</div>

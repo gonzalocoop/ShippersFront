@@ -1,0 +1,41 @@
+<div class="contenedor-principal" *ngIf="!cargando; else loading">
+
+  <h2 class="titulo">
+    ✨  Reseñas de <span>&#64;{{ selectedUser }}</span> ✨
+  </h2>
+
+  <div class="comentarios-container">
+
+    <div class="comentario-card" *ngFor="let c of comentariosVisibles">
+
+      <div class="calificacion">
+        ⭐ {{ c.calificacion }}/5
+      </div>
+
+      <p class="texto">{{ c.comentario }}</p>
+
+      <div class="taller-info">
+        <img [src]="getImagenUrl(c.taller.link_imagen)" alt="" class="img-taller">
+        <div>
+          <h4>{{ c.taller.titulo }}</h4>
+          <p class="direccion">{{ c.taller.departamento }} – {{ c.taller.direccion }}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Botón para ver más -->
+  <div class="btn-center" *ngIf="index < comentarios.length">
+    <button (click)="agregarComentarios()" class="btn-ver-mas">
+      Mostrar más comentarios 👇
+    </button>
+  </div>
+
+</div>
+
+<!-- Loading -->
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>

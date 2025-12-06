@@ -1,0 +1,89 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e88e5;
+}
+
+h2 {
+  color: #1565c0;
+  margin-top: 30px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: white;
+}
+
+.tabla th {
+  background: #1976d2;
+  color: white;
+  padding: 10px;
+}
+
+.tabla td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.tabla tr:nth-child(even) {
+  background: #f2faff;
+}
+
+.activo {
+  color: green;
+  font-weight: bold;
+}
+
+.inactivo {
+  color: red;
+  font-weight: bold;
+}
+
+.acciones {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.acciones input {
+  padding: 6px;
+  width: 120px;
+}
+
+.acciones button {
+  padding: 8px 14px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.form input {
+  padding: 8px;
+  border: 1px solid #bbb;
+}
+
+.form button {
+  background: #0d47a1;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}

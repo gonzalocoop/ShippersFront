@@ -1,0 +1,148 @@
+<div class="container"  *ngIf="verificar()">
+
+    <h1 class="titulo">Panel de Administración</h1>
+
+    <!-- ========================== -->
+    <!-- 1. TABLA DE TALLERES -->
+    <!-- ========================== -->
+    <h2>Talleres</h2>
+
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Departamento</th>
+                <th>Dirección</th>
+                <th>Precio</th>
+                <th>Cupos</th>
+                <th>Activo</th>
+                <th>Ver Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of listaTalleres">
+                <td>{{ t.id_taller }}</td>
+                <td>{{ t.titulo }}</td>
+                <td>{{ t.departamento }}</td>
+                <td>{{ t.direccion }}</td>
+                <td>S/ {{ t.precio }}</td>
+                <td>{{ t.cupos_libres }}</td>
+                <td>
+                    <span [class.activo]="t.activo" [class.inactivo]="!t.activo">
+                        {{ t.activo ? 'Activo' : 'Inactivo' }}
+                    </span>
+                </td>
+                <td>
+                    <a [routerLink]="['/talleres/descripcion', t.id_taller]" class="link-visitar">
+                        Visitar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ACTIVAR TALLER -->
+    <div class="acciones">
+        <input type="number" placeholder="ID Taller" [(ngModel)]="idTallerActivar">
+        <button (click)="activarTaller()">Activar Taller</button>
+    </div>
+    <!-- DESACTIVAR TALLER -->
+    <div class="acciones">
+        <input type="number" placeholder="ID Taller" [(ngModel)]="idTallerDesactivar">
+        <button (click)="desactivarTaller()">Desactivar Taller</button>
+    </div>
+
+    <hr>
+
+    <!-- ========================== -->
+    <!-- 2. TABLA LAS FIJAS -->
+    <!-- ========================== -->
+    <h2>Las Fijas</h2>
+
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título (hora)</th>
+                <th>Taller</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of listaFijas">
+                <td>{{ f.id_fijas }}</td>
+                <td>{{ f.titulo }}</td>
+                <td>{{ f.taller.titulo }}</td>
+                <td>
+                    <span [class.activo]="f.activo" [class.inactivo]="!f.activo">
+                        {{ f.activo ? 'Activo' : 'Inactivo' }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ACTIVAR FIJA -->
+    <div class="acciones">
+        <input type="number" placeholder="ID Fija" [(ngModel)]="idFijasActivar">
+        <button (click)="activarFijas()">Activar Fija</button>
+    </div>
+    <!-- DESACTIVAR FIJA -->
+    <div class="acciones">
+        <input type="number" placeholder="ID Fija" [(ngModel)]="idFijasDesactivar">
+        <button (click)="desactivarFijas()">Desactivar Fija</button>
+    </div>
+
+    <hr>
+
+    <!-- ========================== -->
+    <!-- 3. TABLA PAQUETES -->
+    <!-- ========================== -->
+    <h2>Paquetes</h2>
+
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Personas</th>
+                <th>Precio</th>
+                <th>Día</th>
+                <th>Hora</th>
+                <th>Fija</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listaPaquetes">
+                <td>{{ p.id_paquetes }}</td>
+                <td>{{ p.cantidad_personas }}</td>
+                <td>S/ {{ p.precio }}</td>
+                <td>{{ p.dia | date:'yyyy-MM-dd' }}</td>
+                <td>{{ p.hora }}</td>
+                <td>{{ p.fijas.titulo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <hr>
+    <hr>
+    <div class="acciones">
+        <button (click)="actualizarComentarios()">Actualizar los comentarios!!</button>
+    </div>
+
+    <!-- ========================== -->
+    <!-- 4. FORMULARIO REGISTRAR UNA NUEVA FIJA -->
+    <!-- ========================== -->
+    <h2>Registrar Nueva Fija</h2>
+
+    <form class="form" (ngSubmit)="registrarFija()">
+        <label>Título:</label>
+        <input type="text" [(ngModel)]="nuevaFija.titulo" name="titulo" required>
+
+        <label>ID Taller:</label>
+        <input type="number" [(ngModel)]="idTallerParaFija" name="idTallerParaFija" required>
+
+        <button type="submit">Registrar Fija</button>
+    </form>
+</div>

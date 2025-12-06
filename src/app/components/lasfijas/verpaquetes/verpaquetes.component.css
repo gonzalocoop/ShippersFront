@@ -1,0 +1,432 @@
+/* ============================= */
+/*   PALETA Y CONFIGURACIÓN      */
+/* ============================= */
+:root {
+  --azul-primario: #1A2A44;
+  --azul-suave: #4F7CAC;
+  --arena: #F2E9D8;
+  --blanco: #ffffff;
+  --gris-claro: #F5F7FA;
+  --gris-texto: #616161;
+  --verde-ok: #2E7D32;
+  --radius: 18px;
+
+  font-family: "Poppins", sans-serif;
+}
+.blanco{
+  color: white;
+}
+/* ============================= */
+/*            HERO               */
+/* ============================= */
+.hero {
+  width: 100%;
+  height: 420px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 50px;
+  left: 60px;
+  color: var(--blanco);
+}
+
+.hero-overlay h1 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hero-overlay p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ============================= */
+/*            RIBBON             */
+/* ============================= */
+.ribbon {
+  width: 100%;
+  margin-top: -20px;
+  padding: 18px 35px;
+  background: var(--gris-claro);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.ribbon .item {
+  font-weight: 600;
+  color: var(--azul-primario);
+  font-size: 15px;
+}
+
+/* ============================= */
+/*            LAYOUT             */
+/* ============================= */
+.layout {
+  display: flex;
+  gap: 45px;
+  padding: 50px;
+}
+
+.left { width: 66%; }
+.right { width: 34%; position: sticky; top: 35px; }
+
+/* ============================= */
+/*           SECCIONES           */
+/* ============================= */
+.section {
+  background: var(--blanco);
+  padding: 28px;
+  border-radius: var(--radius);
+  margin-bottom: 35px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+.section h2,
+.section h3 {
+  color: var(--azul-primario);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+/* Sobre la experiencia */
+.section-experiencia {
+  border-left: 6px solid var(--azul-suave);
+  background: var(--gris-claro);
+}
+
+/* Incluye / No incluye */
+.section-incluye {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-left: 6px solid var(--arena);
+  background: #fffaf2;
+}
+
+.section-incluye ul li {
+  margin-bottom: 6px;
+  color: var(--gris-texto);
+}
+
+/* Itinerario */
+.section-itinerario details {
+  background: var(--gris-claro);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* Comunidad */
+.section-comunidad {
+  border-left: 6px solid var(--verde-ok);
+  background: #f3fff3;
+}
+
+.comunidad {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.comunidad img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* Ubicación */
+.section-ubicacion {
+  border-left: 6px solid var(--azul-primario);
+  background: #eef3ff;
+}
+
+/* ============================= */
+/*      TARJETA DE RESERVA       */
+/* ============================= */
+.card-reserva {
+  background: var(--fondo-suave);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 10px solid var(--primario);
+  color: var(--blanco);
+}
+
+.card-reserva h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--acento);
+}
+
+.card-reserva h2 span {
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.subtext {
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* LABELS */
+.card-reserva label {
+  font-weight: 600;
+  color: var(--lavanda);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* SELECT */
+.card-reserva select {
+  width: 100%;
+  padding: 14px;
+  background: #3a335c;
+  color: white;
+  border-radius: 14px;
+  border: 1px solid #6C5CE7;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.card-reserva select:hover {
+  border-color: var(--acento);
+}
+
+/* PARTICIPANTES */
+.participantes {
+  background: #3a335c;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid #6C5CE7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participantes button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  background: var(--primario);
+  border: none;
+  color: white;
+  transition: 0.25s;
+}
+
+.participantes button:hover {
+  background: var(--primario-hover);
+  transform: scale(1.1);
+}
+
+.participantes span {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--lavanda);
+}
+
+/* TOTAL */
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--lavanda);
+}
+
+.total strong {
+  font-size: 24px;
+  color: var(--acento);
+}
+
+/* BOTÓN RESERVAR */
+.btn-reservar {
+  width: 100%;
+  padding: 16px;
+  font-size: 20px;
+  background: var(--primario);
+  color: var(--blanco);
+  border-radius: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(108,92,231,0.5);
+}
+
+.btn-reservar:hover {
+  background: var(--primario-hover);
+  transform: translateY(-2px);
+}
+
+/* Confianza */
+.confianza {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+
+
+
+.btn-secundario {
+  background: linear-gradient(135deg, #4B0082, #6A0DAD);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+  box-shadow: 0 4px 12px rgba(90, 0, 150, 0.4);
+  display: inline-block;
+}
+
+.btn-secundario:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(90, 0, 150, 0.6);
+  background: linear-gradient(135deg, #7B1FA2, #9C27B0);
+}
+
+.btn-secundario:active {
+  transform: scale(0.97);
+}
+
+
+/* ============================= */
+/*        BOTÓN DE VOLVER        */
+/* ============================= */
+
+.btn-volver {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 10;
+  transition: 0.25s ease;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.btn-volver:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+
+.alerta-cupos {
+  width: 100%;
+  padding: 18px 25px;
+  background: #ff4d4f; /* rojo intenso */
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+/* efecto pulso suave */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+
+
+.mensaje-cupos {
+  background: #ff4d4f; /* rojo intenso */
+  color: white;
+  font-weight: 600;
+  padding: 14px 18px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+}
+
+/* efecto pulso suave */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+
+/* Ubicación */
+.section-ubicacion {
+  border-left: 6px solid var(--azul-primario);
+  background: #eef3ff;
+}
+
+/* Itinerario */
+.section-itinerario details {
+  background: var(--gris-claro);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* ============================= */
+/*      RESPONSIVE (MOBILE)      */
+/* ============================= */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .left, .right {
+    width: 100%;
+  }
+  .hero-overlay {
+    bottom: 30px;
+    left: 25px;
+  }
+}
+
+
+@keyframes pop {
+  0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+

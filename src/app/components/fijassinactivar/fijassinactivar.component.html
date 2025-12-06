@@ -1,0 +1,34 @@
+<div class="contenedor">
+
+  <h1 class="titulo">Mis Fijas</h1>
+
+  <!-- Loader -->
+  <div *ngIf="cargando" class="loader"></div>
+
+  <!-- Sin datos -->
+  <div *ngIf="!cargando && listaFijas.length === 0" class="sin-datos">
+    <p>No tienes fijas que puedan tener paquetes</p>
+  </div>
+
+  <!-- Grid de cards -->
+  <div class="grid" *ngIf="!cargando && listaFijas.length > 0">
+    <div class="card" *ngFor="let f of listaFijas">
+      
+      <div class="card-header">
+        <h2>{{ f.titulo }}</h2>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Taller:</strong> {{ f.taller.titulo }}</p>
+        <p><strong>Dirección:</strong> {{ f.taller.direccion }}</p>
+        <p><strong>¿Visible?</strong> 
+          <span [ngClass]="f.activo ? 'activo' : 'inactivo'">
+            {{ f.activo ? "Sí" : "No" }}
+          </span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

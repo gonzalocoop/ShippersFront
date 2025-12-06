@@ -1,0 +1,113 @@
+<!-- ============================= -->
+<!-- ALERTA DE CUPOS AGOTADOS -->
+<!-- ============================= -->
+<!--
+<div *ngIf="paquete.cantidad_personas > paquete.fijas.taller.cupos_libres" class="alerta-cupos">
+  ⚠️ Cupos agotados: Este paquete requiere
+  {{ paquete.cantidad_personas }} personas, pero solo quedan
+  {{ paquete.fijas.taller.cupos_libres }} cupos disponibles.
+  <br>
+  Por favor, selecciona otro volviendo atrás.
+</div>
+-->
+
+<div class="hero">
+  <button (click)="volver()" class="btn-volver">Volver</button>
+  <img *ngIf="paquete?.fijas" 
+     [src]="getImagenUrl(paquete.fijas.taller.link_imagen)">
+  <div class="hero-overlay">
+    <h1>{{ paquete.fijas.titulo }}</h1>
+    <p class="blanco">{{ paquete.fijas.taller.direccion }}</p>
+  </div>
+</div>
+
+<!-- Ribbon Informativa -->
+<div class="ribbon">
+  <div class="item">👥 {{ paquete.cantidad_personas }} pers.</div>
+  <div class="item">💰 S/ {{ paquete.precio }}</div>
+  <div class="item">📦 Taller: {{ paquete.fijas.taller.titulo }}</div>
+  <div class="item">👥 Cupos libres del taller: {{ paquete.fijas.taller.cupos_libres }}</div>
+  <div class="item">⏱ Horario: {{ paquete.dia }} a las {{ paquete.hora }}</div>
+
+
+</div>
+
+<div class="layout">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="left">
+
+    <section class="section section-experiencia">
+      <h2>Sobre este taller</h2>
+      <p>{{ paquete.fijas.taller.descripcion }}</p>
+    </section>
+
+    <!-- Itinerario -->
+    <section class="section section-itinerario">
+      <h3>Todos los horarios:</h3>
+      <details *ngFor="let f of fechas">
+        <summary>Día: {{ f.dia }} Hora: {{ f.hora }} — {{ f.titulo }}</summary>
+        <p>Descripcion: {{ f.descripcion }}</p>
+        <p>Máximas personas del horario: {{ f.maximas_personas }}</p>
+        <p>Cantidad de personas registradas: {{ f.personas_registradas }}</p>
+      </details>
+    </section>
+
+
+    <!-- Comunidad / Creador -->
+    <section class="section section-comunidad">
+      <h3>Creador</h3>
+      <div class="comunidad">
+        <img src="assets/images/avatar.png" alt="Usuario">
+        <div>
+          <h4>{{ perfilPublico?.nombre  }}</h4>
+          <p>Conoce a la comunidad!!</p>
+        </div>
+      </div>
+      <button class="btn-secundario" [routerLink]="['/perfilpublico/',paquete.fijas.taller.usua.id_usuario]">Ver perfil</button>
+    </section>
+
+  </div>
+  <!-- Ubicación -->
+  <section class="section section-ubicacion">
+    <h3>Ubicación</h3>
+
+    <iframe width="100%" height="280" loading="lazy" style="border-radius: 12px;" [src]="mapaUrl">
+    </iframe>
+  </section>
+  <!-- COLUMNA DERECHA -->
+  <div class="right">
+    <div class="card-reserva">
+
+      <div class="precio-box">
+        <h2>S/ {{ paquete.precio }}</h2>
+        <span>por {{ paquete.cantidad_personas }} personas</span>
+      </div>
+
+      <hr>
+
+      <!-- Botón o mensaje según disponibilidad -->
+      <ng-container *ngIf="paquete.cantidad_personas <= paquete.fijas.taller.cupos_libres; else cuposAgotados">
+        <button class="btn-reservar" (click)="reservarPaquete()">
+          Reservar paquete 🚀
+        </button>
+      </ng-container>
+
+      <ng-template #cuposAgotados>
+        <div class="mensaje-cupos">
+          ⚠️ Cupos agotados: Este paquete requiere {{ paquete.cantidad_personas }} personas,
+          pero solo quedan {{ paquete.fijas.taller.cupos_libres }} cupos disponibles.
+        </div>
+      </ng-template>
+
+      <div class="confianza">
+        <p>🔒 Pago seguro</p>
+        <p>💬 Cancelación flexible</p>
+        <p>🤝 Apoyas directamente a artesanos locales</p>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
