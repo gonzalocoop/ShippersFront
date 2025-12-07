@@ -17,8 +17,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8081'],
-          disallowedRoutes: ['http://localhost:8081/login/forget','http://localhost:8081/login','http://localhost:8081/lasfijas/fijasfuera','http://localhost:8081/registrarcuenta','http://localhost:8081/registrarcuenta/listarusuarios','http://localhost:8081/registrarcuenta/listarroles'],
+          allowedDomains: ['shipperapp.azurewebsites.net'],
+          disallowedRoutes: ['https://shipperapp.azurewebsites.net/login/forget','https://shipperapp.azurewebsites.net/login','https://shipperapp.azurewebsites.net/lasfijas/fijasfuera','https://shipperapp.azurewebsites.net/registrarcuenta','https://shipperapp.azurewebsites.net/registrarcuenta/listarusuarios','https://shipperapp.azurewebsites.net/registrarcuenta/listarroles'],
         },
       })
     ), provideAnimationsAsync()
