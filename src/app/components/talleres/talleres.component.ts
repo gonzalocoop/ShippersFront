@@ -84,6 +84,6 @@ export class TalleresComponent implements OnInit{
     this.updatePagedTalleres();
   }
   getImagenUrl(nombreArchivo: string): string {
-    return `http://localhost:8081/uploads/${nombreArchivo}`;
+    return `https://shipperapp.azurewebsites.net/uploads/${nombreArchivo}`;
   }
 }
